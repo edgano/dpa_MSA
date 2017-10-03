@@ -5,7 +5,7 @@
 #define NUMBER		1000          /* maximum number of sequences */
 #define SIGMA		128         /* alphabet size */
 #define DASH		'-'         /* null symbol */
-#define BIG		999999
+#define BIG		9999999999
 #define DIAG		0			/* code for traceback */
 #define	VERT		1			/* code for traceback */
 #define HORZ		2			/* code for traceback */
