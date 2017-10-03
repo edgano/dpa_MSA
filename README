@@ -1,0 +1,149 @@
+ftp-bimas.cit.nih.gov                              Last update: October 2, 2005
+
+               MSA version 2.1
+
+MSA is a program to do multiple sequence alignment under the
+sum-of-pairs criterion. Versions 2.0 and beyond are distributed by
+Alejandro Schaffer (schaffer@nchgr.nih.gov). Please contact him if you
+have any problems with MSA.
+
+
+|*|  History
+
+MSA version 1.0 was written by J. Kececioglu, S. Altchul, D. Lipman,
+and R. Miner and distributed in 1989, and it was briefly described in:
+
+    1. D. Lipman, S. Altschul and J. Kececioglu, "A Tool for Multiple
+Sequence Alignment", Proc. Natl. Acad. Sci. USA 86 (1989) 4412-4415.
+
+MSA 2.0 is an improved version that uses substantially less space and
+time. It was developed by S. K. Gupta and A. A. Schaffer. It is described in:
+
+    2. S. K. Gupta, J. Kececioglu, and A. A. Schaffer, "Improving the
+Practical Sapce and Time Efficiency of the Shortest-Paths Approach to
+Sum-of-Pairs Multiple Sequence Alignment, J. Computational Biology, 
+2(1995) 459--472.  [Note: Our original title was "Making the Shortest-Paths
+Approach to Sum-of-Pairs Multiple Sequence Alignment More Space
+Efficient in Practice" and an extended abstract with the original
+title appeared in Proc. 6th Annual Combinatorial Pattern Matching
+conference (CPM '95).]
+
+
+Paper 2 describes the improvements and also includes a more detailed
+explanation of the most important algorithm in MSA 1.0. A copy of
+paper 2 is included as paper.ps with this distribution.
+
+Users should cite both papers 1 and 2 in any publication that refers to
+MSA version 2.0 or beyond.
+
+Version 2.1 includes some minor fixes and improvements. More
+information on the differences between 2.0 and 2.1 is included below.
+
+Some other papers that helped develop the theory behind MSA are:
+
+    3. Carrillo & Lipman, "The Multiple Sequence Alignment Problem in Biology",
+		SIAM J. Appl. Math. 48 (1988) 1073-1082;
+    4. Altschul & Lipman, "Trees, Stars, and Multiple Biological Sequence
+		Alignment", SIAM J. Appl. Math. 49 (1989) 197-209;
+    5. Altschul, "Gap Costs for Multiple Sequence Alignment",
+		J. Theor. Biol. 138 (1989) 297-309;
+    6. Altschul, Carroll & Lipman, "Weights for Data Related by a Tree",
+		J. Molec. Biol. 207 (1989) 647-653;
+    7. Altschul, "Leaf Pairs and Tree Dissections",
+		SIAM J. Discrete Math. 2 (1989) 293-299;
+
+
+|*| Installation
+MSA is designed to run under the UNIX operating
+system, and generally requires several megabytes of memory.
+The form that input to the program is required to take is
+described in the enclosed manual page.
+	
+The program was developed as a research tool, and is not
+currently very "user friendly".  It takes a bit of experience
+to use it effectively.  The program works best when it is
+given sequences of approximately equal length that are thought
+to be globally related.  Using MSA to align sequences with only
+local similarities (e.g. three full length sequences and one
+fragment) is likely to result in unacceptable time and memory
+usage.  
+
+This package contains the following files:
+
+README  (this file)
+makefile
+defs.h
+bias.c
+ecalc.c
+faces.c
+fixer.c
+main.c
+primer.c
+msa.1  (man page)
+paper.ps (paper in PostScript)
+SampleData.fasta (sample input)
+
+If you retrived the files all together as msa.tar.Z, then run:
+
+    uncompress msa.tar.Z
+    tar xvf msa.tar
+
+and this will pull the files apart.
+
+To make a compiled version of msa, run
+     make msa
+
+The makefile we distribute uses the cc compiler, simply because most
+UNIX machines have a C compiler named cc. You may wish to experiment
+with other C compilers, such as gcc, that are available on your
+machine. To change compilers, change the first line of makefile by
+replacing cc on the right-hand side of the = with the name of your C
+compiler.
+
+To try the program, run:
+
+  msa SampleData.fasta
+
+Caution: In most cases it is necessary to use the -d flag to expand
+the parts of the dynamic programming graph that msa searches.
+However, it is not necessary for SampleData.txt. See the man page
+and the paper for a discussion of how to use the -d flag to increase
+DELTA.
+
+
+
+
+|*| Improvements Since the Release of 2.0
+
+1. Improved paper in accordance with suggestions from referees.
+
+2. Fixed a declaration problem that caused a crash on IRIX (SGI version of 
+ UNIX).
+
+3. Removed pruning by lower-bound of distance to sink. This saves space
+ and hence time. Thanks to the referee who suggested this idea.
+
+4. Fixed a bug in memory management reported by William Pearson.
+
+5. Fixed a compilation problem reported by Zachary Johnson.
+
+6. Fixed a compilation problem that occurred on Linux.
+
+7. Included some improvements in memory management in main.c suggested
+   by Jason Papadopoulos.
+
+|*| Other Notes
+
+1. MSA is available via the World-Wide Web through a site
+(http://ibc.wustl.edu/msa.html) at Washington University in St. Louis.
+The site is run by Hugh Chou (hugh@wustl.edu). Hugh picked up MSA 2.0
+and installed it almost immediately!
+
+2. Alex Ropelewski (ropelews@psc.edu) at the Pittsburgh Supercomputing
+Center has a FORTRAN progrm that can convert MSA output format to other
+formats. Contact Alex for more information.
+
+3. I have set an MSA mailing list for those wish to learn about bugs, updates,
+and other auxiliary services (such as the Web Site and the format conversion
+programs). If you wish to be on the mailing list, send mail to 
+schaffer@cs.rice.edu.
