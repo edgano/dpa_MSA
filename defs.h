@@ -1,7 +1,7 @@
 /*  Include file for MSA.  Version 1.0   January 3, 1989  */
 /*  Updated by A. A. Schaffer for Version 2.1 May 10, 1995 */
 #define LINE		75	    /* line length of output */
-#define LENGTH		500         /* maximum length of sequences */
+#define LENGTH		4500         /* maximum length of sequences */
 #define NUMBER		1000          /* maximum number of sequences */
 #define SIGMA		128         /* alphabet size */
 #define DASH		'-'         /* null symbol */
