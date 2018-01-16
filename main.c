@@ -31,29 +31,29 @@ See:
 	Computes an optimal multiple alignment within a lattice defined by
 	the join of vertices from two-dimensional path graphs.  There
 	is one such path graph for each pair of sequences, and all vertices
-	contained in paths whose cost is within an epsilon of the minimal
+	contained in paths whose cost is within an epsilon of the minimal 
 	are included.  Features include:
 
 	The program computes a minimal SP alignment (Sum of Pairwise costs).
 	Each pairwise cost may be given a different weight.  These weights
-	may be calculated from an evolutionary tree using either of two
+	may be calculated from an evolutionary tree using either of two 
 	rationales (Altschul et al., "Weights for Data Related by a Tree",
 	J. Molec. Biol. 208) or equal weights may be specified.  The
 	evolutionary tree is estimated from pairwise distances using the
-	Neighbor Joining method (Saitou & Nei, Mol. Biol. Evol. 4:406-425).
+	Neighbor Joining method (Saitou & Nei, Mol. Biol. Evol. 4:406-425).  
 
 	Epsilons for each sequence pair may be input by the user or
 	estimated.  An heuristic multiple alignment is computed and
 	the epsilons are taken to be the difference between the
 	imposed and minimal pairwise costs.
-
+	
 	Gap costs are of the affine type generalized for multiple sequence
 	alignments (Altschul, "Gap Costs for Multiple Sequence Alignment",
 	J. Theor. Biol. 138:297-309).  The user may specify whether terminal
 	gaps are counted.
 
 	The user may specify residues in any of the sequences to be
-	forced into alignment.
+	forced into alignment.  
 
 *******************************************************************************/
 
@@ -142,7 +142,7 @@ HEAP	*heap();
 
 /*************************   FLAGS   *******************************************
 
-	-m		suppresses computation of optimal multiple alignment
+	-m		suppresses computation of optimal multiple alignment 
 	-g		penalizes terminal gaps
 	-b		sets all pairwise weights to 1 (does not compute tree)
 	-o		suppresses status reports to stderr
@@ -175,9 +175,9 @@ char	*argv[];
 
 	gettimeofday(&starttime, NULL);  /* Get start time */
 	/* process arguments */
-	oflag=bflag=gflag=1;
-	fflag=0;
-	delta = -1;
+	oflag=bflag=gflag=1; 
+	fflag=0; 
+	delta = -1; 
 	stream = NULL;
 	if ( argc > MAX_ARGS )
           fatal(USAGE);
@@ -263,12 +263,10 @@ char	*argv[];
                   fprintf(stderr,"Calculating epsilons.\n");
 		ecalc(2*len-2);
 		if (oflag) {
-
 			fprintf(stderr,"----Estimated epsilons----\n");
 			for (i=1;i<K;++i)
-                for (j=i+1;j<=K;++j)
-                    fprintf(stderr,"I =%2d  J =%2d  epsilon = %2d\n",i,j,epsi[i][j]);
-
+                          for (j=i+1;j<=K;++j)
+                            fprintf(stderr,"I =%2d  J =%2d  epsilon = %2d\n",i,j,epsi[i][j]);
 		}
 	}
 	if (mflag) {
@@ -306,7 +304,7 @@ char	*argv[];
 #define strng(a) "a"
 #endif
 
-#define SUB(a,b)  D[strng(a)[0]][strng(b)[0]] = D[strng(b)[0]][strng(a)[0]]
+#define SUB(a,b)  D[strng(a)[0]][strng(b)[0]] = D[strng(b)[0]][strng(a)[0]] 
 #define DAG(a)    D[strng(a)[0]][strng(a)[0]]
 
 short	D [SIGMA] [SIGMA];	/* symbol distance */
@@ -332,7 +330,7 @@ FILE	*stream,*Ffile;
 		S[K][0] = DASH;
 		strcpy(&S[K][1],buffer);
 	}
-
+	
        /* initialize gap cost, gap count table,
 	and positive symmetric integer distance table */
 
@@ -347,237 +345,237 @@ FILE	*stream,*Ffile;
 		fclose(stream);
 	}
 	else {           /* default is dayhoff matrix and gap cost 8	*/
-		G = 8;
+		G = 8;		
 		DAG(-) = 0;
-		DAG(W)=0;
-		DAG(Y)=7;
-		DAG(F)=8;
+		DAG(W)=0;  
+		DAG(Y)=7;  
+		DAG(F)=8;  
 		DAG(V)=13;
-		DAG(L)=11;
-		DAG(I)=12;
-		DAG(M)=11;
+		DAG(L)=11; 
+		DAG(I)=12; 
+		DAG(M)=11; 
 		DAG(K)=12;
-		DAG(R)=11;
-		DAG(H)=11;
-		DAG(Q)=13;
+		DAG(R)=11; 
+		DAG(H)=11; 
+		DAG(Q)=13; 
 		DAG(E)=13;
-		DAG(D)=13;
-		DAG(N)=15;
-		DAG(G)=12;
+		DAG(D)=13; 
+		DAG(N)=15; 
+		DAG(G)=12; 
 		DAG(A)=15;
-		DAG(P)=11;
-		DAG(T)=14;
-		DAG(S)=15;
+		DAG(P)=11; 
+		DAG(T)=14; 
+		DAG(S)=15; 
 		DAG(C)=5;
-		SUB(-,C) = 12;
+		SUB(-,C) = 12; 
 		SUB(-,S) = 12;
-		SUB(-,T) = 12;
+		SUB(-,T) = 12; 
 		SUB(-,P) = 12;
-		SUB(-,A) = 12;
+		SUB(-,A) = 12; 
 		SUB(-,G) = 12;
-		SUB(-,N) = 12;
+		SUB(-,N) = 12; 
 		SUB(-,D) = 12;
-		SUB(-,E) = 12;
+		SUB(-,E) = 12; 
 		SUB(-,Q) = 12;
-		SUB(-,H) = 12;
+		SUB(-,H) = 12; 
 		SUB(-,R) = 12;
-		SUB(-,K) = 12;
+		SUB(-,K) = 12; 
 		SUB(-,M) = 12;
-		SUB(-,I) = 12;
+		SUB(-,I) = 12; 
 		SUB(-,L) = 12;
-		SUB(-,V) = 12;
+		SUB(-,V) = 12; 
 		SUB(-,F) = 12;
-		SUB(-,Y) = 12;
+		SUB(-,Y) = 12; 
 		SUB(-,W) = 12;
-		SUB(W,C) = 25;
+		SUB(W,C) = 25; 
 		SUB(W,S) = 19;
-		SUB(W,T) = 22;
+		SUB(W,T) = 22; 
 		SUB(W,P) = 23;
-		SUB(W,A) = 23;
+		SUB(W,A) = 23; 
 		SUB(W,G) = 24;
-		SUB(W,N) = 21;
+		SUB(W,N) = 21; 
 		SUB(W,D) = 24;
-		SUB(W,E) = 24;
+		SUB(W,E) = 24; 
 		SUB(W,Q) = 22;
-		SUB(W,H) = 20;
+		SUB(W,H) = 20; 
 		SUB(W,R) = 15;
-		SUB(W,K) = 20;
+		SUB(W,K) = 20; 
 		SUB(W,M) = 21;
-		SUB(W,I) = 22;
+		SUB(W,I) = 22; 
 		SUB(W,L) = 19;
-		SUB(W,V) = 23;
+		SUB(W,V) = 23; 
 		SUB(W,F) = 17;
-		SUB(W,Y) = 17;
+		SUB(W,Y) = 17; 
 		SUB(Y,C) = 17;
-		SUB(Y,S) = 20;
+		SUB(Y,S) = 20; 
 		SUB(Y,T) = 20;
-		SUB(Y,P) = 22;
+		SUB(Y,P) = 22; 
 		SUB(Y,A) = 20;
-		SUB(Y,G) = 22;
+		SUB(Y,G) = 22; 
 		SUB(Y,N) = 19;
-		SUB(Y,D) = 21;
+		SUB(Y,D) = 21; 
 		SUB(Y,E) = 21;
-		SUB(Y,Q) = 21;
+		SUB(Y,Q) = 21; 
 		SUB(Y,H) = 17;
-		SUB(Y,R) = 21;
+		SUB(Y,R) = 21; 
 		SUB(Y,K) = 21;
-		SUB(Y,M) = 19;
+		SUB(Y,M) = 19; 
 		SUB(Y,I) = 18;
-		SUB(Y,L) = 18;
+		SUB(Y,L) = 18; 
 		SUB(Y,V) = 19;
-		SUB(Y,F) = 10;
+		SUB(Y,F) = 10; 
 		SUB(F,C) = 21;
-		SUB(F,S) = 20;
+		SUB(F,S) = 20; 
 		SUB(F,T) = 20;
-		SUB(F,P) = 22;
+		SUB(F,P) = 22; 
 		SUB(F,A) = 21;
-		SUB(F,G) = 22;
+		SUB(F,G) = 22; 
 		SUB(F,N) = 21;
-		SUB(F,D) = 23;
+		SUB(F,D) = 23; 
 		SUB(F,E) = 22;
-		SUB(F,Q) = 22;
+		SUB(F,Q) = 22; 
 		SUB(F,H) = 19;
-		SUB(F,R) = 21;
+		SUB(F,R) = 21; 
 		SUB(F,K) = 22;
-		SUB(F,M) = 17;
+		SUB(F,M) = 17; 
 		SUB(F,I) = 16;
-		SUB(F,L) = 15;
+		SUB(F,L) = 15; 
 		SUB(F,V) = 18;
-		SUB(V,C) = 19;
+		SUB(V,C) = 19; 
 		SUB(V,S) = 18;
-		SUB(V,T) = 17;
+		SUB(V,T) = 17; 
 		SUB(V,P) = 18;
-		SUB(V,A) = 17;
+		SUB(V,A) = 17; 
 		SUB(V,G) = 18;
-		SUB(V,N) = 19;
+		SUB(V,N) = 19; 
 		SUB(V,D) = 19;
-		SUB(V,E) = 19;
+		SUB(V,E) = 19; 
 		SUB(V,Q) = 19;
-		SUB(V,H) = 19;
+		SUB(V,H) = 19; 
 		SUB(V,R) = 19;
-		SUB(V,K) = 19;
+		SUB(V,K) = 19; 
 		SUB(V,M) = 15;
-		SUB(V,I) = 13;
+		SUB(V,I) = 13; 
 		SUB(V,L) = 15;
-		SUB(L,C) = 23;
+		SUB(L,C) = 23; 
 		SUB(L,S) = 20;
-		SUB(L,T) = 19;
+		SUB(L,T) = 19; 
 		SUB(L,P) = 20;
-		SUB(L,A) = 19;
+		SUB(L,A) = 19; 
 		SUB(L,G) = 21;
-		SUB(L,N) = 20;
+		SUB(L,N) = 20; 
 		SUB(L,D) = 21;
-		SUB(L,E) = 20;
+		SUB(L,E) = 20; 
 		SUB(L,Q) = 19;
-		SUB(L,H) = 19;
+		SUB(L,H) = 19; 
 		SUB(L,R) = 20;
-		SUB(L,K) = 20;
+		SUB(L,K) = 20; 
 		SUB(L,M) = 13;
-		SUB(L,I) = 15;
+		SUB(L,I) = 15; 
 		SUB(I,C) = 19;
-		SUB(I,S) = 18;
+		SUB(I,S) = 18; 
 		SUB(I,T) = 17;
-		SUB(I,P) = 19;
+		SUB(I,P) = 19; 
 		SUB(I,A) = 18;
-		SUB(I,G) = 20;
+		SUB(I,G) = 20; 
 		SUB(I,N) = 19;
-		SUB(I,D) = 19;
+		SUB(I,D) = 19; 
 		SUB(I,E) = 19;
-		SUB(I,Q) = 19;
+		SUB(I,Q) = 19; 
 		SUB(I,H) = 19;
-		SUB(I,R) = 19;
+		SUB(I,R) = 19; 
 		SUB(I,K) = 19;
-		SUB(I,M) = 15;
+		SUB(I,M) = 15; 
 		SUB(M,C) = 22;
-		SUB(M,S) = 19;
+		SUB(M,S) = 19; 
 		SUB(M,T) = 18;
-		SUB(M,P) = 19;
+		SUB(M,P) = 19; 
 		SUB(M,A) = 18;
-		SUB(M,G) = 20;
+		SUB(M,G) = 20; 
 		SUB(M,N) = 19;
-		SUB(M,D) = 20;
+		SUB(M,D) = 20; 
 		SUB(M,E) = 19;
-		SUB(M,Q) = 18;
+		SUB(M,Q) = 18; 
 		SUB(M,H) = 19;
-		SUB(M,R) = 17;
+		SUB(M,R) = 17; 
 		SUB(M,K) = 17;
-		SUB(K,C) = 22;
+		SUB(K,C) = 22; 
 		SUB(K,S) = 17;
-		SUB(K,T) = 17;
+		SUB(K,T) = 17; 
 		SUB(K,P) = 18;
-		SUB(K,A) = 18;
+		SUB(K,A) = 18; 
 		SUB(K,G) = 19;
-		SUB(K,N) = 16;
+		SUB(K,N) = 16; 
 		SUB(K,D) = 17;
-		SUB(K,E) = 17;
+		SUB(K,E) = 17; 
 		SUB(K,Q) = 16;
-		SUB(K,H) = 17;
+		SUB(K,H) = 17; 
 		SUB(K,R) = 14;
-		SUB(R,C) = 21;
+		SUB(R,C) = 21; 
 		SUB(R,S) = 17;
-		SUB(R,T) = 18;
+		SUB(R,T) = 18; 
 		SUB(R,P) = 17;
-		SUB(R,A) = 19;
+		SUB(R,A) = 19; 
 		SUB(R,G) = 20;
-		SUB(R,N) = 17;
+		SUB(R,N) = 17; 
 		SUB(R,D) = 18;
-		SUB(R,E) = 18;
+		SUB(R,E) = 18; 
 		SUB(R,Q) = 16;
-		SUB(R,H) = 15;
+		SUB(R,H) = 15; 
 		SUB(H,C) = 20;
-		SUB(H,S) = 18;
+		SUB(H,S) = 18; 
 		SUB(H,T) = 18;
-		SUB(H,P) = 17;
+		SUB(H,P) = 17; 
 		SUB(H,A) = 18;
-		SUB(H,G) = 19;
+		SUB(H,G) = 19; 
 		SUB(H,N) = 15;
-		SUB(H,D) = 16;
+		SUB(H,D) = 16; 
 		SUB(H,E) = 16;
-		SUB(H,Q) = 14;
+		SUB(H,Q) = 14; 
 		SUB(Q,C) = 22;
-		SUB(Q,S) = 18;
+		SUB(Q,S) = 18; 
 		SUB(Q,T) = 18;
-		SUB(Q,P) = 17;
+		SUB(Q,P) = 17; 
 		SUB(Q,A) = 17;
-		SUB(Q,G) = 18;
+		SUB(Q,G) = 18; 
 		SUB(Q,N) = 16;
-		SUB(Q,D) = 15;
+		SUB(Q,D) = 15; 
 		SUB(Q,E) = 15;
-		SUB(E,C) = 22;
+		SUB(E,C) = 22; 
 		SUB(E,S) = 17;
-		SUB(E,T) = 17;
+		SUB(E,T) = 17; 
 		SUB(E,P) = 18;
-		SUB(E,A) = 17;
+		SUB(E,A) = 17; 
 		SUB(E,G) = 17;
-		SUB(E,N) = 16;
+		SUB(E,N) = 16; 
 		SUB(E,D) = 14;
-		SUB(D,C) = 22;
+		SUB(D,C) = 22; 
 		SUB(D,S) = 17;
-		SUB(D,T) = 17;
+		SUB(D,T) = 17; 
 		SUB(D,P) = 18;
-		SUB(D,A) = 17;
+		SUB(D,A) = 17; 
 		SUB(D,G) = 16;
-		SUB(D,N) = 15;
+		SUB(D,N) = 15; 
 		SUB(N,C) = 21;
-		SUB(N,S) = 16;
+		SUB(N,S) = 16; 
 		SUB(N,T) = 17;
-		SUB(N,P) = 18;
+		SUB(N,P) = 18; 
 		SUB(N,A) = 17;
-		SUB(N,G) = 17;
+		SUB(N,G) = 17; 
 		SUB(G,C) = 20;
-		SUB(G,S) = 16;
+		SUB(G,S) = 16; 
 		SUB(G,T) = 17;
-		SUB(G,P) = 18;
+		SUB(G,P) = 18; 
 		SUB(G,A) = 16;
-		SUB(A,C) = 19;
+		SUB(A,C) = 19; 
 		SUB(A,S) = 16;
-		SUB(A,T) = 16;
+		SUB(A,T) = 16; 
 		SUB(A,P) = 16;
-		SUB(P,C) = 20;
+		SUB(P,C) = 20; 
 		SUB(P,S) = 16;
-		SUB(P,T) = 17;
+		SUB(P,T) = 17; 
 		SUB(T,C) = 19;
-		SUB(T,S) = 16;
+		SUB(T,S) = 16; 
 		SUB(S,C) = 17;
 	}
 	GG= gflag ? 0 : G;
@@ -685,9 +683,9 @@ EDGE *msa ()
 		inc=1+Upper/50;
 	}
 	while ((e=extract()) != NULL && (v=e->head) != t) {
-		if (oflag && e->dist>ccost) {
-			fprintf(stderr,"*");
-			ccost+=inc;
+		if (oflag && e->dist>ccost) { 
+			fprintf(stderr,"*"); 
+			ccost+=inc; 
 		}
 		if (e->dist <= Upper) {
 
@@ -698,7 +696,7 @@ EDGE *msa ()
 
              /*next loop is from cost function
                     difference between p and q*/
-		  for (I=1;I<=K;I++)
+		  for (I=1;I<=K;I++) 
 		    delta0[I] = q[I] - p[I];
 		  if(gflag) {
 		    endcount = 0;
@@ -793,8 +791,8 @@ VERTEX *source()
 
 	for (i=1;i<=K;i++)
           p[i] = 0;
-	for (i=N[1];i>=0;i--) {
-	  index[i] = i;
+	for (i=N[1];i>=0;i--) { 
+	  index[i] = i; 
 	}
 	for (i=2, a=A[1]=create_coordinate(index,N[1]+1,NULL);i<=K;i++)
 		a=a->coord_vals->next_coord
@@ -840,8 +838,8 @@ int	point[], seqnum;
 	r = face[1][seqnum] + point[1];
 	c = r->column;
 	m = r->width;
-	for (i=0;i<m;i++) {
-		possible_values[i] = c[i];
+	for (i=0;i<m;i++) { 
+		possible_values[i] = c[i]; 
 	}
 	for (J=2;J<seqnum;J++) {
            /*Get values that are consistent with the pairwise
@@ -904,7 +902,7 @@ register	int	q[];
 	}
 
 	for (I=K;I<=K;) {
-		for (;I>=1;I--)
+		for (;I>=1;I--) 
 		  if (P[I]<B[I])
 		    break;
 		if (I<1)
@@ -919,9 +917,9 @@ register	int	q[];
 			if ( (n = intersect(P,I+1,index)) > 0 )
 				f->next_coord = create_coordinate(index,n,f);
 			else {
-			  f->curr_coord=NULL;
-			  if (free_coordinate(a))
-			    I--;
+			  f->curr_coord=NULL; 
+			  if (free_coordinate(a)) 
+			    I--; 
 			  continue;
 			}
 		    else
@@ -929,11 +927,11 @@ register	int	q[];
 		  for ( a = A[++I] = f->next_coord; I <= K; a = A[++I] = f->next_coord )
 		    if ((i=P[I]=B[I]-1) >= a->lo && i<=a->hi &&
 			(f=a->coord_vals+i-a->lo)->curr_coord != NULL) {
-                      if (f->next_coord==NULL)
-			if ( I < K )
-			  if ( (n = intersect(P,I+1,index)) > 0 )
-				f->next_coord = create_coordinate(index,n,f);
-			  else {
+                      if (f->next_coord==NULL) 
+			if ( I < K ) 
+			  if ( (n = intersect(P,I+1,index)) > 0 ) 
+				f->next_coord = create_coordinate(index,n,f); 
+			  else { 
 			    f->curr_coord=NULL;
 			    if (free_coordinate(a))
 			      I--;
@@ -1066,14 +1064,10 @@ register	EDGE	*e;
 		safe_coord(e->head,q);
 		column(p,q);
 	}
-	// this output() is the align WE WANT
-	if (outputAlignment()==1){
-	    printf("well done \n");
-	    }
+	output();
 
 	/* output statistics */
-/* // REMOVE STADISTICS TO MAKE IT CLEAR
-***********************
+
 	if (gflag)
           printf( "End gaps not penalized.");
 	printf( "\nCostfile:                   %s\n",cname);
@@ -1095,8 +1089,6 @@ register	EDGE	*e;
 		    printf("%3d%4d%12d%12d%9d%10d\n",I,J,proj[I][J],
 			    costs[I][J],proj[I][J]-costs[I][J],epsi[I][J]);
 	}
-***********************
-*/
 }
 
 char    M [NUMBER+1] [LINE];    /* multiple sequence alignment matrix */
@@ -1128,25 +1120,10 @@ void output()
                   printf("%c",M[k][c]);
 		printf("\n");
 	}
+	printf("\n");
 	C=0;
 }
-// outputfunction for the optimal alignment
-int outputAlignment(){
-    	register    int     k, c;
 
-    	if (C==0){
-    	    fatal("Not able to generate Optimistic alignment");
-            return 0;
-        }
-    	for (k=1;k<=K;k++) {
-    		for (c=0;c<C;c++)
-                      printf("%c",M[k][c]);
-    		printf("\n");
-    	}
-    	C=0;
-    	return 1;
-
-}
 /* heap :   create a discrete heap */
 
 HEAP *heap (max)
