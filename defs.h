@@ -2,10 +2,10 @@
 /*  Updated by A. A. Schaffer for Version 2.1 May 10, 1995 */
 #define LINE		75	    /* line length of output */
 #define LENGTH		1000         /* maximum length of sequences */
-#define NUMBER		1000          /* maximum number of sequences */
+#define NUMBER		100          /* maximum number of sequences */
 #define SIGMA		128         /* alphabet size */
 #define DASH		'-'         /* null symbol */
-#define BIG		9999999999
+#define BIG		999999999
 #define DIAG		0			/* code for traceback */
 #define	VERT		1			/* code for traceback */
 #define HORZ		2			/* code for traceback */
